@@ -12,7 +12,9 @@ shown as a badge in the header.
 
 ## Setup
 
-1. Install dependencies:
+Requires Node.js 22+ (`nvm use` picks it up from `.nvmrc`).
+
+1. Install dependencies (also generates the Prisma client):
 
    ```bash
    npm install
@@ -28,7 +30,18 @@ shown as a badge in the header.
    #   CLERK_SECRET_KEY=sk_test_...
    ```
 
-3. Run the dev server:
+3. Create the SQLite database and seed it with synthetic data (~200 refunds,
+   10 feature flags, sample audit entries):
+
+   ```bash
+   npm run db:migrate
+   npm run db:seed
+   ```
+
+   The database lives at `prisma/dev.db` (gitignored). Re-running the seed
+   wipes and regenerates the data.
+
+4. Run the dev server:
 
    ```bash
    npm run dev
